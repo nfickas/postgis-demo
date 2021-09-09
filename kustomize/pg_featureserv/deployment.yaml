@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: featureserv
+  namespace: default
+  labels:
+    app: featureserv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: featureserv
+  template:
+    metadata:
+      labels:
+        app: featureserv
+    spec:
+      containers:
+      - name: featureserv
+        image: pramsey/pg_featureserv
+        ports:
+        - containerPort: 9000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: hippo-pguser-featureserv
+              key: uri
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true

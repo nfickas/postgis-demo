@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: featureserv
+spec:
+  selector:
+    app: featureserv
+  ports:
+    - protocol: TCP
+      port: 9000

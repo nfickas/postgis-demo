@@ -10,6 +10,9 @@ spec:
  - name: tileserv
    databases:
    - "postgres"
+- name: featureserv
+   databases:
+   - "postgres"
  - name: postgres
  instances:
    - name: instance1
