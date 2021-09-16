@@ -14,7 +14,7 @@ BEGIN
         FROM (
             SELECT t.geom
     FROM fire_hazard_areas t
-    WHERE t.firehazard=fire_hazard_level) AS geom;
+    WHERE t.firehazard=fire_hazard_level OFFSET floor(random()*423)) AS geom;
 END;
 $$
 LANGUAGE 'plpgsql' STABLE PARALLEL SAFE;

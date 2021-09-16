@@ -53,6 +53,20 @@ const view = new ol.View({
 var vectorServer = "http://localhost:7800/";
 var vectorSourceLayer = "public.county_boundary";
 var vectorUrl = vectorServer + vectorSourceLayer + "/{z}/{x}/{y}.pbf";
+var featureLayer = null;
+
+
+  const vectorSource = new ol.source.Vector({
+    url: "http://localhost:9000/functions/generate_fires/items.json?fire_hazard_level=C-FIRE&limit=50",
+    format: new ol.format.GeoJSON(),
+  });
+  console.log(vectorSource);
+
+  featureLayer = new ol.layer.Vector({
+    source: vectorSource,
+  });
+  console.log(featureLayer);
+
 
 var source = new ol.source.VectorTile({
   url: vectorUrl,
@@ -80,15 +94,13 @@ var baseLayer = new ol.layer.Tile({
   })
 });
 
-init_map();
-
 var map, basemap, markers;
-
+init_map();
 function init_map() {
     map = new ol.Map({
         target: 'map',
         view: view,
-        layers: [baseLayer, vectorLayer]
+        layers: [baseLayer, vectorLayer, featureLayer]
     });
 }
 
