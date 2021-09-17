@@ -45,32 +45,32 @@
 
 <script>
 
-var fireStyle = new ol.style.Style({
-    image: new ol.style.Icon({
-        src: './images/fire-icon.jpg',
-        scale: .025
-    })
-});
+// var fireStyle = new ol.style.Style({
+//     image: new ol.style.Icon({
+//         src: '/images/fire-icon.jpg',
+//         scale: .025
+//     })
+// });
 
 const view = new ol.View({
   center: ol.proj.transform([-122.0168, 37.0483], 'EPSG:4326', 'EPSG:3857'),
   zoom: 11,
 });
 
-var vectorServer = "http://localhost:7800/";
+var vectorServer = "http://tileserv.nate-test.svc:7800/";
 var vectorSourceLayer = "public.county_boundary";
 var vectorUrl = vectorServer + vectorSourceLayer + "/{z}/{x}/{y}.pbf";
 var featureLayer = null;
 
 
   const vectorSource = new ol.source.Vector({
-    url: "http://localhost:9000/collections/public.fires/items.json?limit=100",
+    url: "http://34.73.40.240:9000/collections/public.fires/items.json?limit=100",
     format: new ol.format.GeoJSON(),
   });
 
   featureLayer = new ol.layer.Vector({
     source: vectorSource,
-    style: fireStyle,
+    // style: fireStyle,
   });
 
 

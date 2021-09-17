@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: map
+  namespace: default
+  labels:
+    app: map
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: map
+  template:
+    metadata:
+      labels:
+        app: map
+    spec:
+      containers:
+      - name: map
+        image: nfickas/openlayers-map:latest
+        ports:
+        - containerPort: 80
+        securityContext:
+          runAsNonRoot: false

@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: featureserv
 spec:
+  type: LoadBalancer
   selector:
     app: featureserv
   ports:
