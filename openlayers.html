@@ -53,8 +53,8 @@ var fireStyle = new ol.style.Style({
 });
 
 const view = new ol.View({
-  center: ol.proj.transform([-122.030796, 36.974117], 'EPSG:4326', 'EPSG:3857'),
-  zoom: 10,
+  center: ol.proj.transform([-122.0168, 37.0483], 'EPSG:4326', 'EPSG:3857'),
+  zoom: 11,
 });
 
 var vectorServer = "http://localhost:7800/";
@@ -64,7 +64,7 @@ var featureLayer = null;
 
 
   const vectorSource = new ol.source.Vector({
-    url: "http://localhost:9000/functions/generate_fires/items.json?fire_hazard_level=C-FIRE&limit=50",
+    url: "http://localhost:9000/collections/public.fires/items.json?limit=100",
     format: new ol.format.GeoJSON(),
   });
 
