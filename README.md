@@ -1,8 +1,9 @@
 # postgis-demo
 
-export PG_CLUSTER_SUPERUSER_SECRET_NAME=hippo-pguser-postgres                                           
+export PG_CLUSTER_SUPERUSER_SECRET_NAME=hippo-pguser-postgres
 export PGSUPERPASS=$(kubectl get secrets -n nate-test "${PG_CLUSTER_SUPERUSER_SECRET_NAME}" -o go-template='{{.data.password | base64decode}}')
 export PGSUPERUSER=$(kubectl get secrets -n nate-test "${PG_CLUSTER_SUPERUSER_SECRET_NAME}" -o go-template='{{.data.user | base64decode}}')
-PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d uscounties < ./data/postgis.sql
-PGPASSWORD=$PGSUPERPASS pg_restore -h localhost -U $PGSUPERUSER -d uscounties ./data/census.sql
-PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d uscounties < ./data/perms.sql
+PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d postgres < ./data/postgis.sql
+shp2pgsql -D -s 4326 ./data/County_Boundary/County_Boundary.shp | PGPASSWORD=$PGSUPERPASS psql -d postgres -h localhost -U $PGSUPERUSER
+shp2pgsql -D -s 4326 ./data/Fire_Hazard_Areas/Fire_Hazard_Areas.shp | PGPASSWORD=$PGSUPERPASS psql -d postgres -h localhost -U $PGSUPERUSER
+PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d postgres < ./data/perms.sql

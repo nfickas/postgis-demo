@@ -1,9 +1,12 @@
 GRANT SELECT ON fire_hazard_areas TO tileserv;
-GRANT SELECT ON fire_district_sphere_of_influence TO tileserv;
 GRANT SELECT ON county_boundary TO tileserv;
 GRANT SELECT ON fire_hazard_areas TO featureserv;
-GRANT SELECT ON fires to featureserv
 CREATE SCHEMA IF NOT EXISTS postgisftw;
+CREATE TABLE fires (gid serial PRIMARY KEY, geom geometry(MultiPoint, 4326));
+GRANT SELECT ON fires to featureserv;
+GRANT INSERT ON fires to featureserv;
+GRANT SELECT ON fires_gid_seq to featureserv;
+GRANT USAGE ON fires_gid_seq to featureserv;
 GRANT USAGE ON SCHEMA postgisftw TO featureserv;
 
 CREATE OR REPLACE FUNCTION postgisftw.generate_fires(fire_hazard_level text)
