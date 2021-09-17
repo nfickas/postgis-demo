@@ -67,13 +67,11 @@ var featureLayer = null;
     url: "http://localhost:9000/functions/generate_fires/items.json?fire_hazard_level=C-FIRE&limit=50",
     format: new ol.format.GeoJSON(),
   });
-  console.log(vectorSource);
 
   featureLayer = new ol.layer.Vector({
     source: vectorSource,
     style: fireStyle,
   });
-  console.log(featureLayer);
 
 
 var source = new ol.source.VectorTile({
