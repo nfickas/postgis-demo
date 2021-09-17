@@ -57,14 +57,13 @@ const view = new ol.View({
   zoom: 11,
 });
 
-var vectorServer = "http://tileserv.nate-test.svc:7800/";
 var vectorSourceLayer = "public.county_boundary";
-var vectorUrl = vectorServer + vectorSourceLayer + "/{z}/{x}/{y}.pbf";
+var vectorUrl = process.env.TILESERVER + vectorSourceLayer + "/{z}/{x}/{y}.pbf";
 var featureLayer = null;
 
 
   const vectorSource = new ol.source.Vector({
-    url: "http://34.73.40.240:9000/collections/public.fires/items.json?limit=100",
+    url: process.env.FEATURESERVER + "/collections/public.fires/items.json?limit=100",
     format: new ol.format.GeoJSON(),
   });
 

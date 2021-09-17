@@ -18,6 +18,11 @@ spec:
       containers:
       - name: map
         image: nfickas/openlayers-map:latest
+        env:
+        - name: TILESERVER
+          value: "http://tileserv.nate-test.svc:7800/"
+        - name: FEATURESERVER
+          value: "http://featureserv.nate-test.svc:9000"
         ports:
         - containerPort: 8080
         securityContext:
