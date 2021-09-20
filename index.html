@@ -45,12 +45,12 @@
 
 <script>
 
-// var fireStyle = new ol.style.Style({
-//     image: new ol.style.Icon({
-//         src: '/images/fire-icon.jpg',
-//         scale: .025
-//     })
-// });
+var fireStyle = new ol.style.Style({
+    image: new ol.style.Icon({
+        src: '/images/fire-icon.jpg',
+        scale: .025
+    })
+});
 
 const view = new ol.View({
   center: ol.proj.transform([-122.0168, 37.0483], 'EPSG:4326', 'EPSG:3857'),
@@ -69,7 +69,7 @@ var featureLayer = null;
 
   featureLayer = new ol.layer.Vector({
     source: vectorSource,
-    // style: fireStyle,
+    style: fireStyle,
   });
 
 
