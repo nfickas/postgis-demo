@@ -7,3 +7,5 @@ PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d postgres < ./data/p
 shp2pgsql -D -s 4326 ./data/County_Boundary/County_Boundary.shp | PGPASSWORD=$PGSUPERPASS psql -d postgres -h localhost -U $PGSUPERUSER
 shp2pgsql -D -s 4326 ./data/Fire_Hazard_Areas/Fire_Hazard_Areas.shp | PGPASSWORD=$PGSUPERPASS psql -d postgres -h localhost -U $PGSUPERUSER
 PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d postgres < ./data/perms.sql
+
+shp2pgsql -D -s 4326 ./data/Fire_District_Sphere_of_Influence/Fire_District_Sphere_of_Influence.shp | PGPASSWORD=$PGSUPERPASS psql -d postgres -h localhost -U $PGSUPERUSER

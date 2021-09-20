@@ -22,13 +22,21 @@ function MapWrapper(props) {
   //  objects for use in hooks, event handlers, etc.
   const [ map, setMap ] = useState()
   const [ featuresLayer, setFeaturesLayer ] = useState()
-  const [ selectedCoord , setSelectedCoord ] = useState()
+  const [ fireCount, setFireCount ] = useState()
 
+  async function getData() {
+    const res = await fetch(process.env.REACT_APP_FEATURESERVER_URL + "/functions/count_fires/items.json");
+    const data = await res.json();
+
+    // store the data into our books variable
+    setFireCount(data[0].num) ;
+  }
   // get ref to div element - OpenLayers will render into this div
   const mapElement = useRef()
 
   // initialize map on first render - logic formerly put into componentDidMount
   useEffect( () => {
+    getData();
 
     const fireStyle = new Style({
         image: new Circle({
@@ -81,10 +89,7 @@ function MapWrapper(props) {
             url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}',
           })
         }),
-
-        initalFeaturesLayer,
-        fireLayer
-        
+        fireLayer   
       ],
       view: new View({
         center: transform([-122.0168, 37.0483], 'EPSG:4326', 'EPSG:3857'),
@@ -100,7 +105,11 @@ function MapWrapper(props) {
   },[])
 
   return (
-    <div ref={mapElement} className="map-container"></div>
+    <div>
+        <div ref={mapElement} className="map-container">
+        </div>
+        <div><b>Number of Fires {fireCount}</b></div>
+    </div>
   )
 }
 
