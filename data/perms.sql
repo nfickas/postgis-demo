@@ -10,18 +10,16 @@ GRANT SELECT ON fires_gid_seq to featureserv;
 GRANT USAGE ON fires_gid_seq to featureserv;
 GRANT USAGE ON SCHEMA postgisftw TO featureserv;
 
-CREATE OR REPLACE FUNCTION postgisftw.generate_fires(fire_hazard_level text)
+CREATE OR REPLACE FUNCTION postgisftw.generate_fires(fire_hazard_level text, num_fires integer default 1)
 RETURNS TABLE(geo geometry) 
 AS $$
 BEGIN
     INSERT INTO fires(geom)
-    VALUES(
         (SELECT ST_GeneratePoints(geom, 1)
         FROM (
             SELECT t.geom
             FROM fire_hazard_areas t
-            WHERE t.firehazard=fire_hazard_level ORDER BY random() LIMIT 1) AS geom)
-    );
+            WHERE t.firehazard=fire_hazard_level ORDER BY random() LIMIT num_fires) AS geom);
 END;
 $$
 LANGUAGE 'plpgsql' VOLATILE;

@@ -1,20 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import Map from 'ol/Map'
-import View from 'ol/View'
-import TileLayer from 'ol/layer/Tile'
-import XYZ from 'ol/source/XYZ'
-import {transform} from 'ol/proj';
-import MVT from 'ol/format/MVT';
-import VectorTile from 'ol/source/VectorTile';
-import VectorTileLayer from 'ol/layer/VectorTile';
-import VectorSource from 'ol/source/Vector';
-import VectorLayer from 'ol/layer/Vector';
-import GeoJSON from 'ol/format/GeoJSON';
-import Style from 'ol/style/Style';
-import Stroke from 'ol/style/Stroke';
-import Fill from 'ol/style/Fill';
-import Circle from 'ol/style/Circle';
+import { Map, View } from 'ol';
+import { Tile as TileLayer, VectorTile as VectorTileLayer, Vector as VectorLayer } from 'ol/layer';
+import { Style, Stroke, Fill, Circle } from 'ol/style';
+import { MVT, GeoJSON } from 'ol/format';
+import { XYZ, VectorTile, Vector as VectorSource } from 'ol/source';
+import { transform }  from 'ol/proj';
 
 function MapWrapper(props) {
 
@@ -89,6 +80,7 @@ function MapWrapper(props) {
             url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}',
           })
         }),
+        initalFeaturesLayer,
         fireLayer   
       ],
       view: new View({
