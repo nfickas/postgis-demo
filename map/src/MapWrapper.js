@@ -34,7 +34,7 @@ function MapWrapper(props) {
 
   // initialize map on first render - logic formerly put into componentDidMount
   useEffect( () => {
-    getData();
+    setInterval(getData, 5000);
 
     const fireStyle = new Style({
         image: new Circle({
