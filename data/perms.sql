@@ -3,7 +3,7 @@ GRANT SELECT ON county_boundary TO tileserv;
 GRANT SELECT ON fire_hazard_areas TO featureserv;
 GRANT SELECT ON fire_district_sphere_of_influence TO featureserv;
 CREATE SCHEMA IF NOT EXISTS postgisftw;
-CREATE TABLE fires (gid serial PRIMARY KEY, geom geometry(MultiPoint, 4326));
+CREATE TABLE fires (gid serial PRIMARY KEY, geom geometry(POINT, 4326));
 GRANT SELECT ON fires to featureserv;
 GRANT INSERT ON fires to featureserv;
 GRANT SELECT ON fires_gid_seq to featureserv;
@@ -15,7 +15,7 @@ RETURNS TABLE(geo geometry)
 AS $$
 BEGIN
     INSERT INTO fires(geom)
-        (SELECT ST_GeneratePoints(geom, 1)
+        (SELECT ST_GeometryN(ST_GeneratePoints(geom, 1), 1)
         FROM (
             SELECT t.geom
             FROM fire_hazard_areas t

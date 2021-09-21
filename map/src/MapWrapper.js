@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { Map, View } from 'ol';
-import { Tile as TileLayer, VectorTile as VectorTileLayer, Vector as VectorLayer } from 'ol/layer';
+import { Tile as TileLayer, VectorTile as VectorTileLayer, Vector as VectorLayer, Heatmap as HeatmapLayer } from 'ol/layer';
 import { Style, Stroke, Fill, Circle } from 'ol/style';
 import { MVT, GeoJSON } from 'ol/format';
 import { XYZ, VectorTile, Vector as VectorSource } from 'ol/source';
@@ -13,7 +13,9 @@ function MapWrapper(props) {
   //  objects for use in hooks, event handlers, etc.
   const [ map, setMap ] = useState()
   const [ featuresLayer, setFeaturesLayer ] = useState()
-  const [ fireCount, setFireCount ] = useState()
+  const [ fireLayer, setFireLayer ] = useState()
+  const [ heatmapLayer, setHeatmapLayer ] = useState()
+  const [ fireCount, setFireCount ] = useState(0)
 
   async function getData() {
     const res = await fetch(process.env.REACT_APP_FEATURESERVER_URL + "/functions/count_fires/items.json");
@@ -24,6 +26,11 @@ function MapWrapper(props) {
   }
   // get ref to div element - OpenLayers will render into this div
   const mapElement = useRef()
+
+  function activateHeatmap() {
+    heatmapLayer.setVisible(!heatmapLayer.getVisible());
+    fireLayer.setVisible(!fireLayer.getVisible());
+  }
 
   // initialize map on first render - logic formerly put into componentDidMount
   useEffect( () => {
@@ -63,10 +70,23 @@ function MapWrapper(props) {
     
     const fireLayer = new VectorLayer({
         source: new VectorSource({
-            url: process.env.REACT_APP_FEATURESERVER_URL + "/collections/public.fires/items.json?limit=100",
+            url: process.env.REACT_APP_FEATURESERVER_URL + "/collections/public.fires/items.json?limit=100000",
             format: new GeoJSON()
         }),
         style: fireStyle
+    })
+
+    const heatmapLayer = new HeatmapLayer({
+      source: new VectorSource({
+        url: process.env.REACT_APP_FEATURESERVER_URL + "/collections/public.fires/items.json?limit=100000",
+        format: new GeoJSON()
+      }),
+      blur: 10,
+      raidus: 10,
+      weight: function(feature) {
+        return 30;
+      },
+      visible: false
     })
 
     // create map
@@ -81,7 +101,8 @@ function MapWrapper(props) {
           })
         }),
         initalFeaturesLayer,
-        fireLayer   
+        fireLayer,
+        heatmapLayer   
       ],
       view: new View({
         center: transform([-122.0168, 37.0483], 'EPSG:4326', 'EPSG:3857'),
@@ -93,6 +114,8 @@ function MapWrapper(props) {
     // save map and vector layer references to state
     setMap(initialMap)
     setFeaturesLayer(initalFeaturesLayer)
+    setFireLayer(fireLayer)
+    setHeatmapLayer(heatmapLayer)
 
   },[])
 
@@ -100,7 +123,14 @@ function MapWrapper(props) {
     <div>
         <div ref={mapElement} className="map-container">
         </div>
-        <div><b>Number of Fires {fireCount}</b></div>
+        <div>
+          <b>Number of Fires {fireCount}</b>
+        </div>
+        <div>
+          <button onClick={activateHeatmap}>
+            Toggle Heatmap
+          </button>
+        </div>
     </div>
   )
 }
