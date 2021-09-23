@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: featureserv
+  name: map
 spec:
   selector:
-    app: featureserv
+    app: map
   ports:
     - protocol: TCP
-      port: 9000
+      port: 8080
