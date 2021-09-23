@@ -14,6 +14,9 @@ spec:
     databases:
     - "postgres"
   - name: postgres
+  - name: grafana
+    databases:
+    - "postgres"
   instances:
   - name: instance1
     replicas: 2

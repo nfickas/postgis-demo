@@ -3,5 +3,7 @@
 /data/Fire_Hazard_Areas/
 /data/County_Boundary/
 /data/Fire_District_Sphere_of_Influence/
+/data/Facilities/
+/data/County_Maintained_Roads/
 .DS_Store
 map/node_modules

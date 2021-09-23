@@ -62,8 +62,8 @@ spec:
         - mountPath: /etc/prometheus/alert-rules.d
           name: alertmanagerrules
       dnsPolicy: ClusterFirst
-      securityContext:
-        fsGroup: 26
+      # securityContext:
+      #   fsGroup: 26
         # supplementalGroups : 65534
       restartPolicy: Always
       schedulerName: default-scheduler

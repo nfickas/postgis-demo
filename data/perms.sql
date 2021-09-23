@@ -38,20 +38,6 @@ $$
 LANGUAGE 'plpgsql' STABLE;
 
 
-CREATE OR REPLACE FUNCTION postgisftw.count_fires(department_name text)
-RETURNS TABLE(num integer)
-AS $$
-BEGIN
-    RETURN QUERY
-        SELECT
-            COUNT(*)
-        FROM fire_district_sphere_of_influence AS soi
-        JOIN fires
-        ON ST_Contains(soi.geom, fires.geom);
-END;
-$$
-LANGUAGE 'plpgsql' STABLE;
-
 CREATE VIEW fires_for_departments AS
     SELECT
         soi.fire_soi AS fire_soi,
@@ -60,3 +46,31 @@ CREATE VIEW fires_for_departments AS
     FROM fire_district_sphere_of_influence AS soi
     JOIN fires
     ON ST_Contains(soi.geom, fires.geom);
+
+CREATE OR REPLACE FUNCTION postgisftw.detect_schools(distance integer)
+RETURNS TABLE(gid integer, name varchar, grade_level varchar, dist float, geom geometry)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT DISTINCT ON(f.gid) f.gid, f.name, f.grade_leve AS grade_level, (ST_Distance(f.geom::geography, s.geom::geography)) AS dist, f.geom 
+    FROM facilities AS f, fires AS s 
+    WHERE type_expl='School' AND ST_DWithin(f.geom::geography, s.geom::geography, distance);
+END;
+$$
+LANGUAGE 'plpgsql' STABLE;
+
+ALTER TABLE county_boundary
+ADD COLUMN time timestamp;
+
+UPDATE county_boundary
+SET time = current_timestamp;
+
+GRANT SELECT ON county_boundary to grafana;
+GRANT SELECT ON facilities to grafana;
+GRANT SELECT ON fires to grafana;
+
+ALTER TABLE facilities
+ADD COLUMN time timestamp;
+
+UPDATE facilities
+SET time = current_timestamp;

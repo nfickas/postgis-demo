@@ -75,8 +75,8 @@ spec:
           name: grafana-dashboards
       dnsPolicy: ClusterFirst
       restartPolicy: Always
-      securityContext:
-        fsGroup: 26
+      # securityContext:
+      #   fsGroup: 26
         # supplementalGroups : 65534
       schedulerName: default-scheduler
       serviceAccount: grafana
