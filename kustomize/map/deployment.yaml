@@ -17,13 +17,14 @@ spec:
     spec:
       containers:
       - name: map
-        image: nfickas/openlayers-map:latest
+        image: nfickas/openlayers-map:test
         env:
-        - name: TILESERVER
-          value: "http://tileserv.nate-test.svc:7800/"
-        - name: FEATURESERVER
-          value: "http://featureserv.nate-test.svc:9000"
+        - name: REACT_APP_TILESERVER_URL
+          value: "http://tileserv-nate-test.apps.ocp4-timm.gce-containers.crunchydata.com"
+        - name: REACT_APP_FEATURESERVER_URL
+          value: "http://featureserv-nate-test.apps.ocp4-timm.gce-containers.crunchydata.com"
         ports:
-        - containerPort: 8080
-        securityContext:
-          runAsNonRoot: false
+        - containerPort: 3000
+        # securityContext:
+        #   runAsUser: 1000
+          
