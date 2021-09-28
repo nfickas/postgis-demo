@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <title>Fire District Sphere of Influence</title>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>Fire District's Spheres of Influence. A &amp;quot;&amp;quot;sphere of influence&amp;quot;&amp;quot; is defined as a 
+&amp;quot;&amp;quot;plan for the probable physical boundaries and services area of a local 
+government agency as determined by LAFCO&amp;quot;&amp;quot; (Local Agency Formation Commission). 
+The sphere defines the extent the city or special district will probably expand 
+to within the timespan of its current general plan. Boundaries were first converted from Local Area Formation Commission (LAFCO)  paper maps to AutoCAD drawings. These were plotted and reviewed by the LAFCO  executive officer.</abstract>
+            <purpose>Polygon data depicting the Fire District Sphere of Influence in Santa Cruz County, California</purpose>
+        </descript>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>open data</themekey>
+                <themekey>jurisdictional</themekey>
+                <themekey>fire</themekey>
+                <themekey>district</themekey>
+                <themekey>sphere</themekey>
+                <themekey>influence</themekey>
+                <themekey>LAFCO</themekey>
+                <themekey>Administrative</themekey>
+            </theme>
+        </keywords>
+        <accconst>None</accconst>
+        <useconst>Public Information. Freely-available. The County of Santa Cruz shall not be liable to users of the digital map layers and tabular data or to any other person, individual, company, association, firm, corporation, or public or private entity regardless of the nature of the organization for any loss or damage, whether consequential or otherwise, including but not limited to time, money, or goodwill arising from the use, operation, or modification of the digital map layers and tabular data. In using the digital map layers and tabular data, the user further agrees to indemnify, defend, and hold harmless the County of Santa Cruz, its officers, agents, and employees from any and all claims, liabilities, and losses whatsoever (together with any expenses, damages, court costs, and reasonable attorneys’ fees related thereto) arising out of or resulting from use of the digital map layers and tabular data. </useconst>
+        <datacred>County of Santa Cruz</datacred>
+    </idinfo>
+    <metainfo>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>

@@ -1,9 +1,9 @@
 /data/census.sql
-/data/ne_50m_admin_0_countries/
-/data/Fire_Hazard_Areas/
-/data/County_Boundary/
-/data/Fire_District_Sphere_of_Influence/
-/data/Facilities/
-/data/County_Maintained_Roads/
+# /data/ne_50m_admin_0_countries/
+# /data/Fire_Hazard_Areas/
+# /data/County_Boundary/
+# /data/Fire_District_Sphere_of_Influence/
+# /data/Facilities/
+# /data/County_Maintained_Roads/
 .DS_Store
 map/node_modules

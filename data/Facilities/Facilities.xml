@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <title>Facilities</title>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>The Facilities layer combines a number of previous layers.  Some were used to create the HAS emergency preparedness maps.  Some were used for the building inspection mapping for code enforcement.  To avoid having overlap we combined them into a single layer.
+ 
+A definition query can be used to single out a specific facility type for mapping.ChurchesClinicsHospitalsLibrariesRed Cross SitesRest-Nursing-Group HomesSchool SitesCamp/RecreationFire StationCounty Owned BuildingSheriff Sub StationSupplemental InformationThese layers were prepared to support pandemic preparation as part of an emergency mapping project for HSA and are included on the oversized quad mapping.  The building division of the Planning department has provided a second set of ‘Critical’ facilities that need to be inspected within 24 hours of an earthquake.  There is some overlap between these two datasets (Planning and HSA) so we consolidated this information into a single layer using subtypes.</abstract>
+            <purpose>Point data depicting the locations of various facilities in Santa Cruz County, California</purpose>
+        </descript>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>open data</themekey>
+                <themekey>facilities</themekey>
+                <themekey>Churches</themekey>
+                <themekey>Clinics</themekey>
+                <themekey>Hospitals</themekey>
+                <themekey>Libraries</themekey>
+                <themekey>Red Cross Sites</themekey>
+                <themekey>Rest Homes</themekey>
+                <themekey>Schools Sites</themekey>
+                <themekey>Fire Station</themekey>
+            </theme>
+        </keywords>
+        <accconst>None</accconst>
+        <useconst>Public Information. Freely-available. The County of Santa Cruz shall not be liable to users of the digital map layers and tabular data or to any other person, individual, company, association, firm, corporation, or public or private entity regardless of the nature of the organization for any loss or damage, whether consequential or otherwise, including but not limited to time, money, or goodwill arising from the use, operation, or modification of the digital map layers and tabular data. In using the digital map layers and tabular data, the user further agrees to indemnify, defend, and hold harmless the County of Santa Cruz, its officers, agents, and employees from any and all claims, liabilities, and losses whatsoever (together with any expenses, damages, court costs, and reasonable attorneys’ fees related thereto) arising out of or resulting from use of the digital map layers and tabular data.</useconst>
+        <datacred>County of Santa Cruz</datacred>
+    </idinfo>
+    <metainfo>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>

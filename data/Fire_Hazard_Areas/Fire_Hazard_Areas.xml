@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <title>Fire Hazard Areas</title>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>Critical and Mitigatable Fire Hazard areas as defined in General Plan adopted 
+May 24, 1994. Critical Fire Hazard area is defined as a high wildfire hazard 
+area composed of chaparral vegetative cover in all slope categories. Designated 
+on the County Resource and Constraint maps or determined by field investigation. 
+ Attributes: C-FIRE = Critical Fire Hazard area is 
+defined as a high wildfire hazard area composed of chaparral vegetative cover in 
+all slope categories. Designated on the County Resource and Constraint maps or 
+determined by field investigation. M-FIRE = Mitigable Critical Fire Hazard Areas 
+fit into the following categories: (a)Critical Fire Hazard Area within the area 
+bordered by the following access roads: From Day Valley Road to Freedom Blvd., 
+to Hames Road, To Browns Valley Road to Hazel Dell Road , To Gaffey Road, down 
+Highway 152 to Carlton Road, Carlton Road to Highway 129and ending at Murphy 
+road. (b)Critical Fire Hazard Areas with mitigation based on the following 
+criteria:    (1) extent of the critical fire vegetation:    (2) distance to adjacent 
+fire hazard areas;    (3) accessibility for fire fighting equipment;    (4) air 
+moisture content;    (5) historic record of wild land fires;    (6) slope and terrain. 
+
+Supplemental InformationSupplemental
+Information Supplemental Information
+
+Original Mapping Source: Growth Management Environmental Report Natural Fire  Hazards Map Used to Convert to GIS: Source Map New Information Acceptable  for Updating Maps: Report from biologist showing site is not chaparral. Parcel  Specific Overriding Information: Report from biologist showing site is not  chaparral habitat. Source maps boundaries were traced or transferred to USGS 7.5  minute quadrangle sheets. Boundaries were then digitized using known control  points or intersections of roads for reference. For some sheets, as few as two  known control points were available. The boundaries were plotted and reviewed by  the County's Advanced Planning staff.</abstract>
+            <purpose>Polygon data depicting Fire Hazard Areas in Santa Cruz County, California</purpose>
+        </descript>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>open data</themekey>
+                <themekey>emergency</themekey>
+                <themekey>management</themekey>
+                <themekey>fire</themekey>
+                <themekey>hazard</themekey>
+                <themekey>pln</themekey>
+            </theme>
+        </keywords>
+        <accconst>None</accconst>
+        <useconst>Public Information. Freely-available. The County of Santa Cruz shall not be liable to users of the digital map layers and tabular data or to any other person, individual, company, association, firm, corporation, or public or private entity regardless of the nature of the organization for any loss or damage, whether consequential or otherwise, including but not limited to time, money, or goodwill arising from the use, operation, or modification of the digital map layers and tabular data. In using the digital map layers and tabular data, the user further agrees to indemnify, defend, and hold harmless the County of Santa Cruz, its officers, agents, and employees from any and all claims, liabilities, and losses whatsoever (together with any expenses, damages, court costs, and reasonable attorneys’ fees related thereto) arising out of or resulting from use of the digital map layers and tabular data.</useconst>
+        <datacred>County of Santa Cruz</datacred>
+    </idinfo>
+    <metainfo>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>
