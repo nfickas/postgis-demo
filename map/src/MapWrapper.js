@@ -18,11 +18,15 @@ function MapWrapper(props) {
   const [ fireCount, setFireCount ] = useState(0)
 
   async function getData() {
-    const res = await fetch(process.env.REACT_APP_FEATURESERVER_URL + "/functions/count_fires/items.json");
-    const data = await res.json();
+    try{
+      const res = await fetch(process.env.REACT_APP_FEATURESERVER_URL + "/functions/count_fires/items.json");
+      const data = await res.json();
 
-    // store the data into our books variable
-    setFireCount(data[0].num) ;
+      // store the data into our fire variable
+      setFireCount(data[0].num) ;
+    }catch(err){
+      console.log(err);
+    }
   }
   // get ref to div element - OpenLayers will render into this div
   const mapElement = useRef()
@@ -34,6 +38,7 @@ function MapWrapper(props) {
 
   // initialize map on first render - logic formerly put into componentDidMount
   useEffect( () => {
+    getData()
     setInterval(getData, 5000);
 
     const fireStyle = new Style({
@@ -58,36 +63,51 @@ function MapWrapper(props) {
           color: "#ff00ff33"
         })
     });
+    var initalFeaturesLayer;
+    var fireLayer;
+    var heatmapLayer;
 
-    // create and add vector source layer
-    const initalFeaturesLayer = new VectorTileLayer({
-      source: new VectorTile({
-          url: process.env.REACT_APP_TILESERVER_URL + "/public.county_boundary/{z}/{x}/{y}.pbf",
-          format: new MVT()
-        }),
-        style: vectorStyle
-    })
+    try{
+      // create and add vector source layer
+      initalFeaturesLayer = new VectorTileLayer({
+        source: new VectorTile({
+            url: process.env.REACT_APP_TILESERVER_URL + "/public.county_boundary/{z}/{x}/{y}.pbf",
+            format: new MVT()
+          }),
+          style: vectorStyle
+      })
+    }catch(err) {
+      console.log(err);
+    }
     
-    const fireLayer = new VectorLayer({
+    try{
+      fireLayer = new VectorLayer({
         source: new VectorSource({
             url: process.env.REACT_APP_FEATURESERVER_URL + "/collections/public.fires/items.json?limit=100000",
             format: new GeoJSON()
         }),
         style: fireStyle
-    })
+      })
+    } catch(err) {
+      console.log(err);
+    }
 
-    const heatmapLayer = new HeatmapLayer({
-      source: new VectorSource({
-        url: process.env.REACT_APP_FEATURESERVER_URL + "/collections/public.fires/items.json?limit=100000",
-        format: new GeoJSON()
-      }),
-      blur: 10,
-      raidus: 10,
-      weight: function(feature) {
-        return 30;
-      },
-      visible: false
-    })
+    try{
+      heatmapLayer = new HeatmapLayer({
+        source: new VectorSource({
+          url: process.env.REACT_APP_FEATURESERVER_URL + "/collections/public.fires/items.json?limit=100000",
+          format: new GeoJSON()
+        }),
+        blur: 10,
+        raidus: 10,
+        weight: function(feature) {
+          return 30;
+        },
+        visible: false
+      })
+    }catch(err) {
+      console.log(err);
+    }
 
     // create map
     const initialMap = new Map({
