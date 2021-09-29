@@ -19,9 +19,9 @@ spec:
         image: nfickas/openlayers-map:test
         env:
         - name: REACT_APP_TILESERVER_URL
-          value: "http://tileserv-nate-test.apps.ocp4-timm.gce-containers.crunchydata.com"
+          value: "http://tileserv-gisdemo.apps.ocp4-timm.gce-containers.crunchydata.com"
         - name: REACT_APP_FEATURESERVER_URL
-          value: "http://featureserv-nate-test.apps.ocp4-timm.gce-containers.crunchydata.com"
+          value: "http://featureserv-gisdemo.apps.ocp4-timm.gce-containers.crunchydata.com"
         ports:
         - containerPort: 3000
         # securityContext:
