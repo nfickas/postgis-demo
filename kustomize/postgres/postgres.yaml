@@ -19,7 +19,7 @@ spec:
     - "postgres"
   instances:
   - name: instance1
-    replicas: 5
+    replicas: 2
     dataVolumeClaimSpec:
       accessModes:
       - "ReadWriteOnce"
