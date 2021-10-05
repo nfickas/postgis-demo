@@ -1,0 +1,3 @@
+resources:
+- ../pg_featureserv
+- ../pg_tileserv
