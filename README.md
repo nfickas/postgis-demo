@@ -1,8 +1,8 @@
 # postgis-demo
 
 export PG_CLUSTER_SUPERUSER_SECRET_NAME=hippo-pguser-postgres
-export PGSUPERPASS=$(kubectl get secrets -n nate-test "${PG_CLUSTER_SUPERUSER_SECRET_NAME}" -o go-template='{{.data.password | base64decode}}')
-export PGSUPERUSER=$(kubectl get secrets -n nate-test "${PG_CLUSTER_SUPERUSER_SECRET_NAME}" -o go-template='{{.data.user | base64decode}}')
+export PGSUPERPASS=$(kubectl get secrets -n gisdemo "${PG_CLUSTER_SUPERUSER_SECRET_NAME}" -o go-template='{{.data.password | base64decode}}')
+export PGSUPERUSER=$(kubectl get secrets -n gisdemo "${PG_CLUSTER_SUPERUSER_SECRET_NAME}" -o go-template='{{.data.user | base64decode}}')
 
 PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d postgres < ./data/postgis.sql
 
@@ -43,23 +43,26 @@ $$
 LANGUAGE 'plpgsql' STABLE;
 
 
-CREATE VIEW fires_for_departments AS
-    SELECT
-        soi.fire_soi AS fire_soi,
-        soi.name AS department_name,
-        fires.gid AS fire_id
-    FROM fire_district_sphere_of_influence AS soi
-    JOIN fires
-    ON ST_Contains(soi.geom, fires.geom);
-
-CREATE OR REPLACE FUNCTION postgisftw.detect_schools(distance integer)
-RETURNS TABLE(gid integer, name varchar, grade_level varchar, dist float, geom geometry)
+CREATE OR REPLACE FUNCTION postgisftw.schools_within_distance(School_Name text, distance integer)
+RETURNS TABLE(name varchar)
 AS $$
 BEGIN
     RETURN QUERY
-    SELECT DISTINCT ON(f.gid) f.gid, f.name, f.grade_leve AS grade_level, (ST_Distance(f.geom::geography, s.geom::geography)) AS dist, f.geom 
-    FROM facilities AS f, fires AS s 
-    WHERE type_expl='School' AND ST_DWithin(f.geom::geography, s.geom::geography, distance);
+    SELECT f.name
+    FROM facilities AS f
+    WHERE ST_DWithin(f.geom::geography, (SELECT geom FROM facilities AS s WHERE s.name=School_Name LIMIT 1)::geography, distance) AND type_expl='School' AND f.name!=School_Name;
+END;
+$$
+LANGUAGE 'plpgsql' STABLE;
+
+CREATE OR REPLACE FUNCTION postgisftw.fires_within_distance_of_school(School_Name text, distance integer)
+RETURNS TABLE(num bigint)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT COUNT(*)
+    FROM fires AS f
+    WHERE ST_DWithin((SELECT geom FROM facilities WHERE name=School_Name)::geography, f.geom::geography, distance)
 END;
 $$
 LANGUAGE 'plpgsql' STABLE;
