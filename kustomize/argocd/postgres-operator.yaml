@@ -12,5 +12,3 @@ spec:
     repoURL: 'https://github.com/nfickas/postgis-demo.git'
     targetRevision: HEAD
   project: default
-  syncPolicy:
-    automated: "null"
