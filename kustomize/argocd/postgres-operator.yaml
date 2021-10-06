@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: postgres-operator-5.0.2
   finalizers: ["resources-finalizer.argocd.argoproj.io"]
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
     name: ''
