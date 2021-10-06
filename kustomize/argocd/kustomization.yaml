@@ -1,2 +1,2 @@
 resources:
-  - "postgres-operator.yaml"
+- postgres-operator.yaml
