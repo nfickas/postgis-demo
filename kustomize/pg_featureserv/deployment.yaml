@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: featureserv
-        image: pramsey/pg_featureserv
+        image: nfickas/pg_featureserv
         ports:
         - containerPort: 9000
         env:
