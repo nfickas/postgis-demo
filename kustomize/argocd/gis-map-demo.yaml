@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres-operator-5.0.2
+  name: gis-map-demo
 spec:
   destination:
     name: ''
-    namespace: postgres-operator
+    namespace: gisdemo
     server: 'https://kubernetes.default.svc'
   source:
-    path: kustomize/install
+    path: kustomize/map
     repoURL: 'https://github.com/nfickas/postgis-demo.git'
     targetRevision: HEAD
   project: default

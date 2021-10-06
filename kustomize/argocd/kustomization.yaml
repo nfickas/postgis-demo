@@ -1,2 +1,5 @@
 resources:
 - postgres-operator.yaml
+- database-cluster.yaml
+- crunchy-spatial.yaml
+- gis-map-demo.yaml
