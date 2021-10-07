@@ -3,7 +3,7 @@ kind: PostgresCluster
 metadata:
   name: hippo
 spec:
-  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis-ha:centos8-13.3-3.1-0
+  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis-ha:centos8-13.4-3.1-0
   postgresVersion: 13
   postGISVersion: "3.1"
   users:
