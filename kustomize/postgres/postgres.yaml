@@ -6,6 +6,9 @@ spec:
   image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis-ha:centos8-13.3-3.1-0
   postgresVersion: 13
   postGISVersion: "3.1"
+  databaseInitSQL:
+    key: init.sql
+    name: init-database
   users:
   - name: tileserv
     databases:
