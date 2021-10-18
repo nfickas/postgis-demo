@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gis-map-demo
+  finalizers: ["resources-finalizer.argocd.argoproj.io"]
+spec:
+  destination:
+    name: ''
+    namespace: gisdemo
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: kustomize/map
+    repoURL: 'https://github.com/nfickas/postgis-demo.git'
+    targetRevision: HEAD
+  project: default

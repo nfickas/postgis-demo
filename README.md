@@ -11,6 +11,8 @@ shp2pgsql -D -s 4326 ./data/Fire_Hazard_Areas/Fire_Hazard_Areas.shp | PGPASSWORD
 shp2pgsql -D -s 4326 ./data/Fire_District_Sphere_of_Influence/Fire_District_Sphere_of_Influence.shp | PGPASSWORD=$PGSUPERPASS psql -d postgres -h localhost -U $PGSUPERUSER
 shp2pgsql -D -s 4326 ./data/Facilities/Facilities.shp | PGPASSWORD=$PGSUPERPASS psql -d postgres -h localhost -U $PGSUPERUSER
 
+CREATE TABLE fires (gid serial PRIMARY KEY, geom geometry(POINT, 4326));
+
 PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d postgres < ./data/perms.sql
 
 PGPASSWORD=$PGSUPERPASS psql -h localhost -U $PGSUPERUSER -d postgres
